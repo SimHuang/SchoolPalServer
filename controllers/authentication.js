@@ -1,11 +1,11 @@
 const passport = require('passport');
 const jwt = require('jwt-simple');
 const User = require('../models/user');
-const secret = require('../config');
+const config = require('../config');
 
 function createTokenForUser(user) {
     const timeStamp = new Date().getTime();
-    return jwt.encode({sub:user.id, iat: timeStamp}, secret.secret);
+    return jwt.encode({sub:user.id, iat: timeStamp}, config.secret);
 }
 
 /**
