@@ -12,3 +12,11 @@ module.exports.newPost = function(req, res, next) {
 module.exports.getPost = function(req, res, next) {
 
 }
+
+/**
+ * Route api to retrieve all post. Pagination included based on body
+ * provided from front end
+ */
+module.exports.getAllPost = function(req, res, next) {
+
+}
