@@ -23,13 +23,9 @@ app.all('*', function(req, res, next) {
   next();
 });
 
-
-app.get('/', function(req, res) {
-    res.send({ping:'pong'});
-});
-
 //routes
 app.use('/api/v1', authentication); 
+app.use('/api/v1', post);
 
 /**
  * This middleware gets called if http request does not match any middleware from earlier
