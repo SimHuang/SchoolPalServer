@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 
 const app = express();
 
+mongoose.Promise = global.Promise;  //using native es6 promises
 mongoose.connect("mongodb://localhost:27017/schoolpal");
 
 const authentication = require('./Routes/authentication');

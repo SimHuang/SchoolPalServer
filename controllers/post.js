@@ -26,9 +26,10 @@ module.exports.newPost = function(req, res, next) {
         if(err) {
             return next(err);
         }
-
-        //TODO:retrieve post again and return to user
-        res.send({success:"new post created"});
+        const justSavedPost = Post.findOne({_id:newPost._id}, function(err, post) {
+            if(err) {return next(err);}
+            res.send(post);
+        });
     });
 }
 
