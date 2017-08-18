@@ -45,6 +45,29 @@ module.exports.getPost = function(req, res, next) {
  * Route api to retrieve all post. Pagination included based on body
  * provided from front end
  */
-module.exports.getAllPost = function(req, res, next) {
-    res.send({ok: "anyone can retrieve post"});
+module.exports.getAllPosts = function(req, res, next) {
+    var school = null;
+    var offset = 0;
+    var limit = 0;
+    if(req.body.school) {
+        school = req.body.school;
+    }
+
+    if(req.body.limit) {
+        offset = req.body.offset;
+    }
+
+    if(req.body.limit) {
+        limit = req.body.limit;
+    }
+
+    Post.find()
+    .limit(limit)
+    .exec({}, function(err, posts) {
+        if(err) {
+            return next(err);
+        }
+
+        res.send(posts);
+    });
 }
