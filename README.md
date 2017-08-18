@@ -1,18 +1,18 @@
 # SchoolPalServer
 
-Execution:
+#### Execution:
 1) Execute command 'npm install' to install dependencies
 2) Execute command 'node app.js' to launch the application
 
 SchoolPal API Resources:
-##### Authentication:
-# Login api auth
+#### Authentication:
+1. Login api auth
 POST - http://localhost:3000/api/v1/signin
 
-# Signup api auth
+2. Signup api auth
 POST - http://localhost:3000/api/v1/signup 
 
-##### Post:
+#### Post:
 1. create a new post
 POST - http://localhost:3000/api/v1/post/new 
 
@@ -27,7 +27,7 @@ body: {
     offset: where to start
 }
 
-##### Comment:
+#### Comment:
 1. Create a new comment for post base on post id
 POST - http://localhost:3000/api/v1/post/{postKey}/comment/new
 
@@ -42,6 +42,6 @@ body: {
     offset: where to start
 }
 
-##### Schools:
+#### Schools:
 1. Get basic information about a school 
 GET - http://localhost:3000/api/v1/school/{schoolId}
