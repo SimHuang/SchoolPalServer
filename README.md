@@ -4,7 +4,7 @@
 1) Execute command 'npm install' to install dependencies
 2) Execute command 'node app.js' to launch the application
 
-SchoolPal API Resources:
+### SchoolPal API Resources:
 #### Authentication:
 1. Login api auth
 POST - http://localhost:3000/api/v1/signin
