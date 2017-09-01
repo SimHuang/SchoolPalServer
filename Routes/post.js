@@ -8,6 +8,6 @@ const requireAuth = passport.authenticate('jwt', { session: false});
 
 app.post('/post/new', requireAuth, Post.newPost);
 app.post('/post/search', Post.getAllPosts);
-app.post('/post/:id', requireAuth, Post.getPost);
+app.get('/post/:id', requireAuth, Post.getPost);
 
 module.exports = app;

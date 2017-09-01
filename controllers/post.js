@@ -8,6 +8,7 @@ module.exports.newPost = function(req, res, next) {
     const tags = req.body.tags;
     const post = req.body.post;
     const author = req.body.author;
+    console.log(req.body);
 
     if(!question || !post || !author) {
         return res.status(422).send({
@@ -38,7 +39,13 @@ module.exports.newPost = function(req, res, next) {
  */
 module.exports.getPost = function(req, res, next) {
     var postId = req.params.id;
-    res.send({ok: "you are authenticated to get a post"});
+
+    Post.findById(postId, function(err, post) {
+        if(err) {
+            return next(err);
+        }
+        res.send(post);
+    });
 }
 
 /**
