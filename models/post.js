@@ -6,7 +6,13 @@ const postSchema = mongoose.Schema({
     post: { type: String},
     date: { type: Date, default: Date.now },
     author: { type: String },
-    answers: [{answer: String, date: Date}],
+    answers: [
+        {
+            user: String,
+            answer: String, 
+            date: { type: Date, default: Date.now }
+        }
+    ],
     meta: {
         views: Number,
         answers: Number,

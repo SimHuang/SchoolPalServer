@@ -78,3 +78,36 @@ module.exports.getAllPosts = function(req, res, next) {
         res.send(posts);
     });
 }
+
+/**
+ * Route api for when user responding to a post thread. It will append 
+ * to the existing post answers array.
+ */
+module.exports.responseToPost = function(req, res, next) {
+    const response = req.body.response;
+    const postId = req.body.post;
+    const user = 'Elon Musk' //hardcoded user for now
+    
+    if(!req.body.response) {
+        return res.status(422).send({error:"Response Field Required!"});
+    }
+
+    Post.update(
+        {   _id:postId    },
+        {
+            $push:{
+                answers: {
+                    "user": user,
+                    "answer": response,
+                }
+            }
+        }, 
+        function(err, callback) {
+            if(err) {
+                return next(err);
+            }
+
+            res.send(callback);
+        }
+    )
+}
