@@ -14,9 +14,9 @@ const postSchema = mongoose.Schema({
         }
     ],
     meta: {
-        views: Number,
-        answers: Number,
-        votes: Number
+        views: { type: Number, default: 0 },
+        answers: { type: Number, default: 0 },
+        votes: { type: Number, default: 0 }
     }
 });
 
