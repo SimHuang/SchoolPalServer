@@ -39,7 +39,22 @@ module.exports.getPostAnswerCount = function(req, res, next) {
  * increase post answer count
  */
 module.exports.increasePostAnswerCount = function(req, res, next) {
+    var postId = req.params.id;
 
+    Post.findOneAndUpdate({_id: postId}, {
+        $inc: { "meta.answers": 1}
+
+    }, function(err, record) {
+        if(err) {
+            return next(err);
+        }
+
+        var answerCount = record.meta.answers;
+
+        res.send({
+            answerCount: answerCount
+        });
+    });
 }
 
 /**
