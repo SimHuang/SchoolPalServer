@@ -11,6 +11,8 @@ mongoose.connect("mongodb://localhost:27017/schoolpal");
 
 const authentication = require('./Routes/authentication');
 const post = require('./Routes/post');
+const user = require('./Routes/user');
+const postMeta = require('./Routes/postMeta.js');
 
 app.use(logger('dev'));
 app.use(bodyParser.urlencoded({ extended: false}));
@@ -27,7 +29,9 @@ app.all('*', function(req, res, next) {
 //routes
 app.use('/api/v1', authentication); 
 app.use('/api/v1', post);
-
+app.use('/api/v1', user);
+app.use('/api/v1', postMeta);
+ 
 /**
  * This middleware gets called if http request does not match any middleware from earlier
  */

@@ -27,6 +27,20 @@ body: {
     offset: where to start
 }
 
+#### Post Meta: 
+1. Upvote a post 
+PUT - http://localhost:3000/api/v1/post/meta/{postId}/upvote
+
+2. Get all upvotes for a post
+GET - http://localhost:3000/api/v1/post/meta/{postId}/upvote
+
+3. Get total answer count
+PUT - http://localhost:3000/api/v1/post/meta/{postId}/answers
+
+4. Increase answer count 
+GET - http://localhost:3000/api/v1/post/meta/{postId}/answers
+
+
 #### Comment:
 1. Create a new comment for post base on post id
 POST - http://localhost:3000/api/v1/post/{postKey}/comment/new
