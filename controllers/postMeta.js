@@ -6,7 +6,7 @@ const Post = require("../models/post");
 module.exports.upvotePost = function(req, res, next) {
 	var postId = req.params.id;
 
-    //TODO:check to see if the user has already upvoted the answer
+	//TODO:check to see if the user has already upvoted the answer
 
 	Post.findOneAndUpdate({_id: postId}, {
 		$inc: { "meta.votes": 1 }
@@ -36,11 +36,12 @@ module.exports.getPostUpvoteCount = function(req, res, next) {
  * get all answer count base on post
  */
 module.exports.getPostAnswerCount = function(req, res, next) {
-    //TODO
+	//TODO
 };
 
 /**
  * increase post answer count
+ * id: post id as part of request
  */
 module.exports.increasePostAnswerCount = function(req, res, next) {
 	var postId = req.params.id;
@@ -52,8 +53,8 @@ module.exports.increasePostAnswerCount = function(req, res, next) {
 		if(err) {
 			return next(err);
 		}
-		var answerCount = record.meta.answers;
-		res.send({answerCount: answerCount});
+		let answerCount = record.meta.answers;
+		res.send({answerCount: answerCount + 1});
 	});
 };
 
