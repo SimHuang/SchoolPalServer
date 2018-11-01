@@ -91,13 +91,15 @@ module.exports.responseToPost = function(req, res, next) {
 		return res.status(422).send({error:"Response Field Required!"});
 	}
 
-	Post.update(
-		{   _id:postId    },
+	Post.update({   _id:postId    },
 		{
 			$push:{
 				answers: {
 					"user": user,
 					"answer": response,
+				},
+				meta: {
+					"answers": 1
 				}
 			}
 		}, 

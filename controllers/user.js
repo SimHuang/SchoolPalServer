@@ -20,7 +20,8 @@ module.exports.getUserProfile = function(req, res) {
 		var userProfile = {
 			name: user.name,
 			email: user.email,
-			bio: userBio
+			bio: userBio,
+			upvotes: user.upvotes
 		};
 
 		res.send(userProfile);

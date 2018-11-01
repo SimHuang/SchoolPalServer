@@ -7,7 +7,13 @@ const userSchema = mongoose.Schema({
 	email: { type: String, required: true, unique: true},
 	password: { type: String, required: true },
 	name: String,
-	bio: String
+	bio: String, 
+	upvotes: [
+		{
+			id: String,
+			date: { type: Date, default: Date.now}
+		}
+	]
 });
 
 //hash password before saving to database 
