@@ -85,7 +85,7 @@ module.exports.getAllPosts = function(req, res, next) {
 module.exports.responseToPost = function(req, res, next) {
 	const response = req.body.response;
 	const postId = req.body.post;
-	const user = "Elon Musk"; //hardcoded user for now
+	const user = req.body.user;
     
 	if(!req.body.response) {
 		return res.status(422).send({error:"Response Field Required!"});
