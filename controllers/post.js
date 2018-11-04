@@ -97,12 +97,12 @@ module.exports.responseToPost = function(req, res, next) {
 				answers: {
 					"user": user,
 					"answer": response,
-				},
-				meta: {
-					"answers": 1
 				}
+			},
+			$inc : {
+				"meta.answers": 1
 			}
-		}, 
+		},
 		function(err, callback) {
 			if(err) {
 				return next(err);
