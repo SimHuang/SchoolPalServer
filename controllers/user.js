@@ -1,14 +1,14 @@
-var jwt = require("jwt-simple");
-var User = require("../models/user");
+const jwt = require("jwt-simple");
+const User = require("../models/user");
 const config = require("../config");
 
 /**
  * GET - API endpoint to retrieve user profile
  */
-module.exports.getUserProfile = function(req, res) {
-	var tokenHeader = req.get("Authorization");
-	var decodedToken = jwt.decode(tokenHeader, config.secret);
-	var userId = decodedToken.sub;
+module.exports.getUserProfile = (req, res) => {
+	const tokenHeader = req.get("Authorization");
+	const decodedToken = jwt.decode(tokenHeader, config.secret);
+	const userId = decodedToken.sub;
 
 	User.findById(userId, function(err, user) {
 		if(err) {
@@ -26,4 +26,47 @@ module.exports.getUserProfile = function(req, res) {
 
 		res.send(userProfile);
 	});
+};
+
+/**
+ * PUT - API endpoint to update user profile
+ */
+module.exports.updateUserProfile = (req, res) => {
+	const tokenHeader = req.get("Authorization");
+	const decodedToken = jwt.decode(tokenHeader, config.secret);
+	const userId = decodedToken.sub;
+	const body = req.body;
+	const {name, bio, username, email} = body;
+
+	if(name === undefined) {
+		res.status(400).send({"Error":"name field required."});
+	}
+
+	if(bio === undefined) {
+		res.status(400).send({"Error":"bio field required."});
+	}
+
+	if(username === undefined) {
+		res.status(400).send({"Error": "username field required."});
+	}
+
+	if(email === undefined) {
+		res.status(400).send({"Error":"email field required."});
+	}
+
+	User.update(
+		{_id: userId},
+		{
+			name,
+			bio,
+			email
+		},
+		(err, object) => {
+			if(err) {
+				res.send(err);
+			}
+
+			res.send(object);
+		}
+	);
 };
