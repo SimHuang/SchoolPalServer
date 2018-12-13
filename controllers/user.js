@@ -70,3 +70,21 @@ module.exports.updateUserProfile = (req, res) => {
 		}
 	);
 };
+
+/**
+ * GET - Api request to get all upvoted post ids that a user upvoted
+ */
+module.exports.getUserUpvotes = (req, res) => {
+	const tokenHeader = req.get("Authorization");
+	const decodedToken = jwt.decode(tokenHeader, config.secret);
+	const userId = decodedToken.sub;
+
+	User.findById(userId, (err, user) => {
+		if(err) {
+			res.send(err);
+		}
+
+		const upvotes = user.upvotes;
+		res.send(upvotes);
+	});
+};
