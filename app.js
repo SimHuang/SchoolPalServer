@@ -9,10 +9,10 @@ const app = express();
 mongoose.Promise = global.Promise;  //using native es6 promises
 mongoose.connect("mongodb://localhost:27017/schoolpal");
 
-const authentication = require("./Routes/authentication");
-const post = require("./Routes/post");
-const user = require("./Routes/user");
-const postMeta = require("./Routes/postMeta.js");
+const authentication = require("./endpoints/authentication");
+const post = require("./endpoints/post");
+const user = require("./endpoints/user");
+const postMeta = require("./endpoints/postMeta.js");
 
 app.use(logger("dev"));
 app.use(bodyParser.urlencoded({ extended: false}));
