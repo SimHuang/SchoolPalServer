@@ -48,7 +48,7 @@ module.exports.upvotePost = function(req, res, next) {
 				}
 			}, function(err) {
 				if(err) {return err;}
-				res.send({ voteCount: voteCount});
+				res.send({ voteCount: voteCount, postId: postId});
 			});
 	});
 };

@@ -1,14 +1,14 @@
 const jwt = require("jwt-simple");
 const User = require("../models/user");
 const config = require("../config");
+// import { getUserIdFromRequest } from "../services/utils";
+const utils = require("../services/utils");
 
 /**
  * GET - API endpoint to retrieve user profile
  */
 module.exports.getUserProfile = (req, res) => {
-	const tokenHeader = req.get("Authorization");
-	const decodedToken = jwt.decode(tokenHeader, config.secret);
-	const userId = decodedToken.sub;
+	const userId = utils.getUserIdFromRequest(req);
 
 	User.findById(userId, function(err, user) {
 		if(err) {
@@ -75,9 +75,7 @@ module.exports.updateUserProfile = (req, res) => {
  * GET - Api request to get all upvoted post ids that a user upvoted
  */
 module.exports.getUserUpvotes = (req, res) => {
-	const tokenHeader = req.get("Authorization");
-	const decodedToken = jwt.decode(tokenHeader, config.secret);
-	const userId = decodedToken.sub;
+	const userId = utils.getUserIdFromRequest(req);
 
 	User.findById(userId, (err, user) => {
 		if(err) {
